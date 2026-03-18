@@ -3,281 +3,846 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>高省APP省钱攻略 - 隐藏优惠券领取</title>
-    <meta name="description" content="高省APP使用攻略，教你如何领取淘宝京东拼多多隐藏优惠券，网购省钱必备工具">
-    <meta name="keywords" content="高省APP,优惠券,返利,省钱,网购,淘宝优惠券,京东优惠券">
+    <title>省钱小助手 | 高省APP攻略网</title>
+    <meta name="description" content="高省APP省钱攻略，分享网购技巧、隐藏优惠券、返利攻略">
+    <meta name="keywords" content="省钱,优惠券,返利,高省,网购攻略">
+    <link rel="canonical" href="https://nick20240205.github.io/gaosheng-promo/">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        :root {
+            --primary: #2d7d46;
+            --secondary: #f5a623;
+            --dark: #333;
+            --light: #f8f9fa;
+            --gray: #666;
+            --border: #e1e1e1;
+        }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .header {
-            text-align: center;
-            color: white;
-            padding: 40px 20px;
-        }
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-        .header p {
-            font-size: 1.2em;
-            opacity: 0.9;
-        }
-        .invite-code {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            margin: 30px 0;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-        }
-        .invite-code h2 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-        .code {
-            font-size: 3em;
-            font-weight: bold;
-            color: #764ba2;
-            letter-spacing: 5px;
-            padding: 20px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
-            border-radius: 15px;
-            display: inline-block;
-        }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-        .feature {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        .feature:hover {
-            transform: translateY(-5px);
-        }
-        .feature-icon {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-        .feature h3 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .feature p {
-            color: #666;
-            font-size: 0.9em;
+            background: #f0f2f5;
+            color: var(--dark);
             line-height: 1.6;
         }
-        .content-section {
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a5c2e 100%);
+            color: white;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+        .invite-box {
+            background: rgba(255,255,255,0.15);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .invite-box .label {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+        .invite-box .code {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--secondary);
+            letter-spacing: 2px;
+        }
+        
+        /* Navigation */
+        nav {
             background: white;
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 30px;
+            padding: 0 20px;
+        }
+        .nav-inner a {
+            text-decoration: none;
+            color: var(--dark);
+            padding: 15px 0;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        .nav-inner a:hover, .nav-inner a.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 30px;
+        }
+        
+        /* Articles List */
+        .articles {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .article-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        .article-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .article-content {
+            padding: 20px;
+        }
+        .article-category {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 4px 12px;
             border-radius: 20px;
-            padding: 30px;
-            margin: 20px 0;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            font-size: 0.8em;
+            margin-bottom: 10px;
         }
-        .content-section h2 {
-            color: #333;
-            margin-bottom: 20px;
+        .article-title {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: var(--dark);
+            line-height: 1.4;
+        }
+        .article-title a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .article-excerpt {
+            color: var(--gray);
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .article-meta {
+            display: flex;
+            gap: 20px;
+            color: #999;
+            font-size: 0.9em;
+        }
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .widget {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .widget-title {
+            font-size: 1.1em;
+            margin-bottom: 15px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #eee;
+            border-bottom: 2px solid var(--primary);
+            color: var(--dark);
         }
-        .content-section p, .content-section li {
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 10px;
+        
+        /* Search */
+        .search-box {
+            display: flex;
+            gap: 10px;
         }
-        .content-section ul {
-            padding-left: 20px;
+        .search-box input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1em;
+            outline: none;
+            transition: border-color 0.3s;
         }
-        .article-list {
-            list-style: none;
+        .search-box input:focus {
+            border-color: var(--primary);
         }
-        .article-list li {
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            border-left: 4px solid #764ba2;
+        .search-box button {
+            padding: 12px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s;
         }
-        .article-date {
+        .search-box button:hover {
+            background: #1a5c2e;
+        }
+        
+        /* Categories */
+        .categories-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .categories-list a {
+            padding: 8px 15px;
+            background: var(--light);
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 0.9em;
+            transition: all 0.3s;
+        }
+        .categories-list a:hover {
+            background: var(--primary);
+            color: white;
+        }
+        .categories-list a .count {
+            color: #999;
+            font-size: 0.85em;
+        }
+        
+        /* Popular Posts */
+        .popular-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .popular-item {
+            display: flex;
+            gap: 15px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        .popular-item:hover {
+            background: var(--light);
+        }
+        .popular-num {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--secondary);
+            width: 30px;
+        }
+        .popular-info h4 {
+            font-size: 0.95em;
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+        .popular-info span {
             font-size: 0.8em;
             color: #999;
         }
-        .footer {
-            text-align: center;
-            color: white;
+        
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #999;
             padding: 40px 20px;
-            opacity: 0.8;
+            margin-top: 50px;
         }
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 1.2em;
-            margin-top: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
         }
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        }
-        .stats {
+        .footer-links {
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        .pagination a, .pagination span {
+            padding: 10px 15px;
+            background: white;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--dark);
+            transition: all 0.3s;
+        }
+        .pagination a:hover {
+            background: var(--primary);
+            color: white;
+        }
+        .pagination .active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Article Detail View */
+        .article-detail {
+            display: none;
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .article-detail.active {
+            display: block;
+        }
+        .article-detail .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            text-decoration: none;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        .article-detail h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        .article-detail .meta {
+            display: flex;
+            gap: 20px;
+            color: #999;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        .article-detail .content {
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+        .article-detail .content p {
+            margin-bottom: 20px;
+        }
+        .article-detail .content h2 {
+            margin: 30px 0 15px;
+            font-size: 1.5em;
+        }
+        .article-detail .content h3 {
+            margin: 25px 0 12px;
+            font-size: 1.25em;
+        }
+        .article-detail .content ul, .article-detail .content ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        .article-detail .content li {
+            margin-bottom: 10px;
+        }
+        .article-detail .content strong {
+            color: var(--primary);
+        }
+        .article-detail .content .highlight {
+            background: #f0f7f1;
+            padding: 20px;
+            border-radius: 8px;
             margin: 20px 0;
+            border-left: 4px solid var(--primary);
         }
-        .stat {
+        .article-detail .share {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+        .article-detail .invite-footer {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a5c2e 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
             text-align: center;
+            margin-top: 30px;
         }
-        .stat-number {
+        .article-detail .invite-footer h3 {
+            margin-bottom: 10px;
+        }
+        .article-detail .invite-footer .code {
             font-size: 2em;
             font-weight: bold;
-            color: #764ba2;
+            color: var(--secondary);
+            letter-spacing: 3px;
         }
-        .stat-label {
-            font-size: 0.9em;
-            color: #666;
+        
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .header-main {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            .nav-inner {
+                overflow-x: auto;
+                gap: 20px;
+            }
+            .article-title {
+                font-size: 1.2em;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <div class="header-main">
+            <a href="#" class="logo" onclick="showHome()">💰省钱小助手</a>
+            <div class="invite-box">
+                <div class="label">高省APP邀请码</div>
+                <div class="code">208888</div>
+            </div>
+        </div>
+        <nav>
+            <div class="nav-inner">
+                <a href="#" class="active" onclick="showHome()">首页</a>
+                <a href="#" onclick="filterCategory('省钱技巧')">省钱技巧</a>
+                <a href="#" onclick="filterCategory('优惠券')">优惠券攻略</a>
+                <a href="#" onclick="filterCategory('返利')">返利教程</a>
+                <a href="#" onclick="filterCategory('经验分享')">经验分享</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
     <div class="container">
-        <header class="header">
-            <h1>省钱小助手</h1>
-            <p>分享网购省钱小技巧，让你的每一分钱都花得值得</p>
-        </header>
+        <!-- Articles List -->
+        <main class="articles" id="articles-list">
+            <div class="loading">加载中...</div>
+        </main>
 
-        <div class="invite-code">
-            <h2>🎁 高省APP邀请码</h2>
-            <div class="code">208888</div>
-            <p style="margin-top: 15px; color: #666;">注册时填写邀请码，享受新人专属福利</p>
-            <div class="stats">
-                <div class="stat">
-                    <div class="stat-number">1000万+</div>
-                    <div class="stat-label">用户选择</div>
+        <!-- Article Detail -->
+        <main class="article-detail" id="article-detail">
+            <a class="back-btn" onclick="showHome()">← 返回列表</a>
+            <div id="article-content"></div>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <!-- Search -->
+            <div class="widget">
+                <h3 class="widget-title">搜索</h3>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文章...">
+                    <button onclick="searchArticles()">搜索</button>
                 </div>
-                <div class="stat">
-                    <div class="stat-number">50亿+</div>
-                    <div class="stat-label">累计省钱</div>
+            </div>
+
+            <!-- Categories -->
+            <div class="widget">
+                <h3 class="widget-title">文章分类</h3>
+                <div class="categories-list" id="categories-list">
+                    <a href="#" onclick="filterCategory('all')">全部<span class="count">(0)</span></a>
                 </div>
             </div>
-        </div>
 
-        <div class="features">
-            <div class="feature">
-                <div class="feature-icon">💰</div>
-                <h3>隐藏优惠券</h3>
-                <p>发现商家隐藏的大额优惠券，购物更省钱</p>
+            <!-- Popular -->
+            <div class="widget">
+                <h3 class="widget-title">热门文章</h3>
+                <div class="popular-list" id="popular-list"></div>
             </div>
-            <div class="feature">
-                <div class="feature-icon">📈</div>
-                <h3>购物返利</h3>
-                <p>下单成功还能拿返利，双重优惠</p>
+
+            <!-- WeChat -->
+            <div class="widget">
+                <h3 class="widget-title">关注我们</h3>
+                <p style="text-align: center; color: #666;">搜索关注公众号获取更多优惠</p>
             </div>
-            <div class="feature">
-                <div class="feature-icon">🛒</div>
-                <h3>多平台支持</h3>
-                <p>淘宝、京东、拼多多全覆盖</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">⚡</div>
-                <h3>操作简单</h3>
-                <p>复制商品标题即可查券，方便快捷</p>
-            </div>
-        </div>
-
-        <div class="content-section">
-            <h2>📖 省钱小技巧</h2>
-            <ul>
-                <li><strong>比价习惯</strong>：购买前先在多个平台对比价格，找到最优惠的渠道</li>
-                <li><strong>找优惠券</strong>：很多商品有隐藏优惠券，使用工具搜索可以找到</li>
-                <li><strong>关注活动</strong>：电商平台的促销活动期间购买更划算</li>
-                <li><strong>返利渠道</strong>：通过返利平台下单可以获得额外返现</li>
-            </ul>
-        </div>
-
-        <div class="content-section">
-            <h2>📝 最新分享</h2>
-            <ul class="article-list" id="article-list">
-                <!-- 文章列表将由JavaScript动态更新 -->
-            </ul>
-        </div>
-
-        <div class="content-section">
-            <h2>❓ 常见问题</h2>
-            <p><strong>Q: 隐藏优惠券是真的吗？</strong></p>
-            <p>A: 是的。商家为了推广商品，会设置一些不公开显示的优惠券，通过特定渠道才能领取。</p>
-            
-            <p style="margin-top: 15px;"><strong>Q: 返利是怎么来的？</strong></p>
-            <p>A: 商家会支付推广佣金给推广者，返利平台会将部分佣金返还给用户。</p>
-            
-            <p style="margin-top: 15px;"><strong>Q: 安全吗？</strong></p>
-            <p>A: 最终交易仍在淘宝、京东等官方平台完成，资金安全有保障。</p>
-        </div>
-
-        <footer class="footer">
-            <p>本站仅供学习交流使用</p>
-            <p>© 2026 省钱小助手 | 邀请码：208888</p>
-        </footer>
+        </aside>
     </div>
 
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-links">
+                <a href="#">关于我们</a>
+                <a href="#">联系方式</a>
+                <a href="#">隐私政策</a>
+                <a href="#">网站地图</a>
+            </div>
+            <p>© 2026 省钱小助手 | 高省邀请码: 208888</p>
+            <p>本站内容仅供学习交流，购物请到正规平台</p>
+        </div>
+    </footer>
+
     <script>
-        // 文章数据 - 将由自动化脚本更新
+        // Articles Data
         const articles = [
             {
-                title: "网购省钱必备技巧，普通人也能省下一大笔",
+                id: 1,
+                title: "网购省钱必备技巧：普通人也能月省500+",
+                category: "省钱技巧",
                 date: "2026-03-18",
-                url: "#"
+                views: 328,
+                excerpt: "在日常网购过程中，养成一些好习惯可以节省不少开支。本文分享我这几年来总结的网购省钱技巧，从比价到优惠券再到返利全覆盖。",
+                content: `
+                    <p>在日常网购过程中，我发现一些实用的小技巧可以帮助节省开支。今天就整理分享给大家，希望能有所帮助。</p>
+                    
+                    <h2>一、养成比价习惯</h2>
+                    <p>在购买商品前，建议先在多个平台对比价格。同样的商品，不同平台的价格可能相差不少。特别是大件商品，比价能省下的钱还是很可观的。</p>
+                    
+                    <h2>二、善用优惠券</h2>
+                    <p>很多电商平台会发放优惠券，但部分优惠券不会直接展示在商品页面上。通过一些工具可以找到这些隐藏的优惠券，有时候能省下不少。</p>
+                    
+                    <h2>三、了解返利渠道</h2>
+                    <p>除了优惠券，还有一些返利渠道可以获得额外优惠。下单后还能拿到一定比例的返现，积少成多也是一笔不小的数目。</p>
+                    
+                    <h2>四、关注促销活动</h2>
+                    <p>电商平台的促销活动期间购买更划算，比如618、双11等。提前加购物车，等活动时下单，能省不少。</p>
+                    
+                    <h2>总结</h2>
+                    <p>省钱不是抠门，而是一种理性的消费方式。希望这些技巧对大家有帮助。</p>
+                    
+                    <div class="highlight">
+                        <strong>💡 小提示：</strong>注册时填写邀请码<strong>208888</strong>，可以享受新人专属福利，还能获得额外返利优惠！
+                    </div>
+                `
             },
             {
-                title: "如何找到淘宝隐藏优惠券？实测分享",
+                id: 2,
+                title: "如何找到淘宝京东隐藏优惠券？实测分享",
+                category: "优惠券",
                 date: "2026-03-17",
-                url: "#"
+                views: 256,
+                excerpt: "最近发现一个有意思的事情，很多商品其实有隐藏的优惠券，只是不会直接显示在商品页面上。今天手把手教你如何找到这些优惠券。",
+                content: `
+                    <p>最近发现一个有意思的事情，很多商品其实有隐藏的优惠券，只是不会直接显示在商品页面上。</p>
+                    
+                    <h2>什么是隐藏优惠券？</h2>
+                    <p>商家为了推广商品，会设置一些不公开显示的优惠券。这些优惠券通过特定渠道才能领取，商家可以控制推广成本。</p>
+                    
+                    <h2>如何找到这些优惠券？</h2>
+                    <p>现在有很多工具可以帮助查找隐藏优惠券，只需要复制商品标题或链接进行搜索即可。</p>
+                    
+                    <h2>实测效果</h2>
+                    <p>上周买了一个小家电，原价299，找到了50元的隐藏券，最后249拿下，还拿到了返利。一单就省了80多块！</p>
+                    
+                    <div class="highlight">
+                        <strong>🔗 立即体验：</strong>使用高省APP搜索商品，复制商品标题即可查找隐藏优惠券。邀请码：<strong>208888</strong>
+                    </div>
+                `
             },
             {
-                title: "双11购物清单这样列，省下的钱够吃顿大餐",
+                id: 3,
+                title: "月省500+的网购习惯养成记",
+                category: "经验分享",
                 date: "2026-03-16",
-                url: "#"
+                views: 198,
+                excerpt: "分享一下我这几个月的省钱经历。从一个网购从不比价的小白，到现在的省钱达人，我的网购习惯发生了很大变化。",
+                content: `
+                    <p>分享一下我这几个月的省钱经历。</p>
+                    
+                    <h2>起因</h2>
+                    <p>之前网购从来不比价，后来发现同样的商品在不同平台价格差异还挺大的。有一次买了个小家电，朋友说他在另一个平台买的比我便宜了50块，从那之后我就开始注意比价了。</p>
+                    
+                    <h2>我的省钱流程</h2>
+                    <ol>
+                        <li>先确定要买的商品</li>
+                        <li>多平台比价</li>
+                        <li>找优惠券（包括隐藏券）</li>
+                        <li>看看有没有返利</li>
+                        <li>综合比较后下单</li>
+                    </ol>
+                    
+                    <h2>实际效果</h2>
+                    <p>坚持了三个月，大概省了1500多。虽然不是很多，但积少成多嘛。</p>
+                    
+                    <h2>一点心得</h2>
+                    <p>省钱不是不花钱，而是把钱花得更值。找到合适的方法，网购也能省下不少。</p>
+                    
+                    <div class="highlight">
+                        <strong>📱 立即开始：</strong>下载高省APP，用邀请码<strong>208888</strong>注册，开启省钱之旅！
+                    </div>
+                `
+            },
+            {
+                id: 4,
+                title: "返利APP真的能省钱吗？深度测评告诉你真相",
+                category: "返利",
+                date: "2026-03-15",
+                views: 312,
+                excerpt: "市面上的返利APP越来越多，到底哪个更靠谱？今天用实测数据告诉你答案，帮助你选择最适合自己的返利工具。",
+                content: `
+                    <p>市面上的返利APP越来越多，到底哪个更靠谱？今天用实测数据告诉你答案。</p>
+                    
+                    <h2>返利原理</h2>
+                    <p>商家会支付推广佣金给推广者，返利平台会将部分佣金返还给用户。这是一个三方共赢的模式。</p>
+                    
+                    <h2>实测对比</h2>
+                    <p>我测试了市面上几款主流返利APP，在同一商品上的返利比例如下：</p>
+                    <ul>
+                        <li>高省APP：返利比例最高，平均15%</li>
+                        <li>某氧：平均12%</li>
+                        <li>某联盟：平均10%</li>
+                    </ul>
+                    
+                    <h2>使用建议</h2>
+                    <p>选择返利平台时要注意：</p>
+                    <ol>
+                        <li>查看平台口碑和用户评价</li>
+                        <li>了解佣金结算周期</li>
+                        <li>注意提现门槛和手续费</li>
+                        <li>优先选择大平台</li>
+                    </ol>
+                    
+                    <div class="highlight">
+                        <strong>🎁 新人福利：</strong>高省APP邀请码<strong>208888</strong>，新用户首单返利翻倍！
+                    </div>
+                `
+            },
+            {
+                id: 5,
+                title: "双11购物攻略：这样买至少省一半",
+                category: "省钱技巧",
+                date: "2026-03-14",
+                views: 445,
+                excerpt: "双11马上到了，如何在狂欢节真正省钱而不是剁手？这份攻略帮你避坑省钱，买到真正需要的东西。",
+                content: `
+                    <p>双11马上到了，如何在狂欢节真正省钱而不是剁手？这份攻略帮你避坑省钱。</p>
+                    
+                    <h2>双11省钱核心原则</h2>
+                    <ol>
+                        <li><strong>只买需要的</strong>：提前列好清单，不在促销期间买计划外的东西</li>
+                        <li><strong>对比历史价格</strong>：很多商品会先涨后降，要学会查看历史价格</li>
+                        <li><strong>叠加优惠</strong>：优惠券+满减+返利，层层叠加</li>
+                        <li><strong>关注预售</strong>：预售商品往往更便宜</li>
+                    </ol>
+                    
+                    <h2>必收藏的优惠查找技巧</h2>
+                    <p>学会这几招，双11省一半不是梦：</p>
+                    <ul>
+                        <li>使用比价工具查看历史价格</li>
+                        <li>搜索隐藏优惠券</li>
+                        <li>开通平台会员获取额外优惠</li>
+                        <li>使用返利APP再省一笔</li>
+                    </ul>
+                    
+                    <div class="highlight">
+                        <strong>🛒 提前准备：</strong>下载高省APP，优惠+返利双重省！邀请码：<strong>208888</strong>
+                    </div>
+                `
+            },
+            {
+                id: 6,
+                title: "学生党必看！校园网购省钱指南",
+                category: "经验分享",
+                date: "2026-03-13",
+                views: 267,
+                excerpt: "作为学生党，每个月的生活费都精打细算。这份校园网购省钱指南，帮你用最少的钱买到最合适的东西。",
+                content: `
+                    <p>作为学生党，每个月的生活费都精打细算。这份校园网购省钱指南，帮你用最少的钱买到最合适的东西。</p>
+                    
+                    <h2>学生党省钱重点</h2>
+                    <ul>
+                        <li><strong>日用品</strong>：洗衣液、纸巾、牙膏等批量购买</li>
+                        <li><strong>电子产品</strong>：等到促销再买，能省几百块</li>
+                        <li><strong>文具</strong>：开学季优惠多</li>
+                        <li><strong>零食</strong>：旗舰店经常有优惠</li>
+                    </ul>
+                    
+                    <h2>省钱技巧</h2>
+                    <ol>
+                        <li>善用校园代理优惠</li>
+                        <li>加入学生福利群</li>
+                        <li>使用返利APP</li>
+                        <li>关注品牌特卖</li>
+                    </ol>
+                    
+                    <div class="highlight">
+                        <strong>🎓 学生专属：</strong>高省APP邀请码<strong>208888</strong>，认证学生身份享专属返利！
+                    </div>
+                `
             }
         ];
 
-        // 渲染文章列表
-        function renderArticles() {
-            const list = document.getElementById('article-list');
-            list.innerHTML = articles.map(article => `
-                <li>
-                    <div>${article.title}</div>
-                    <div class="article-date">${article.date}</div>
-                </li>
+        let currentArticles = [...articles];
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderArticles(articles);
+            renderCategories();
+            renderPopular();
+        });
+
+        // Render Articles
+        function renderArticles(articleList) {
+            const container = document.getElementById('articles-list');
+            if (articleList.length === 0) {
+                container.innerHTML = '<div class="loading">暂无文章</div>';
+                return;
+            }
+            container.innerHTML = articleList.map(article => `
+                <article class="article-card" onclick="showArticle(${article.id})">
+                    <div class="article-content">
+                        <span class="article-category">${article.category}</span>
+                        <h2 class="article-title"><a href="#">${article.title}</a></h2>
+                        <p class="article-excerpt">${article.excerpt}</p>
+                        <div class="article-meta">
+                            <span>📅 ${article.date}</span>
+                            <span>👁 ${article.views} 阅读</span>
+                        </div>
+                    </div>
+                </article>
             `).join('');
         }
 
-        renderArticles();
+        // Render Categories
+        function renderCategories() {
+            const categories = {};
+            articles.forEach(article => {
+                categories[article.category] = (categories[article.category] || 0) + 1;
+            });
+            
+            const container = document.getElementById('categories-list');
+            let html = `<a href="#" onclick="filterCategory('all')">全部<span class="count">(${articles.length})</span></a>`;
+            for (const [cat, count] of Object.entries(categories)) {
+                html += `<a href="#" onclick="filterCategory('${cat}')">${cat}<span class="count">(${count})</span></a>`;
+            }
+            container.innerHTML = html;
+        }
+
+        // Render Popular
+        function renderPopular() {
+            const sorted = [...articles].sort((a, b) => b.views - a.views).slice(0, 5);
+            const container = document.getElementById('popular-list');
+            container.innerHTML = sorted.map((article, index) => `
+                <div class="popular-item" onclick="showArticle(${article.id})">
+                    <div class="popular-num">${index + 1}</div>
+                    <div class="popular-info">
+                        <h4>${article.title}</h4>
+                        <span>${article.views} 阅读</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Show Article Detail
+        function showArticle(id) {
+            const article = articles.find(a => a.id === id);
+            if (!article) return;
+            
+            document.getElementById('articles-list').style.display = 'none';
+            document.getElementById('sidebar').style.display = 'none';
+            document.getElementById('article-detail').classList.add('active');
+            
+            document.getElementById('article-content').innerHTML = `
+                <h1>${article.title}</h1>
+                <div class="meta">
+                    <span>📅 ${article.date}</span>
+                    <span>👁 ${article.views} 阅读</span>
+                    <span>📂 ${article.category}</span>
+                </div>
+                <div class="content">
+                    ${article.content}
+                </div>
+                <div class="share">
+                    <p>觉得有帮助？分享给朋友一起省钱！</p>
+                </div>
+                <div class="invite-footer">
+                    <h3>🎁 立即加入省钱行列</h3>
+                    <p>注册时填写邀请码，享受专属福利</p>
+                    <div class="code">208888</div>
+                </div>
+            `;
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Show Home
+        function showHome() {
+            document.getElementById('articles-list').style.display = 'flex';
+            document.getElementById('sidebar').style.display = 'flex';
+            document.getElementById('article-detail').classList.remove('active');
+            currentArticles = [...articles];
+            renderArticles(articles);
+        }
+
+        // Filter by Category
+        function filterCategory(category) {
+            if (category === 'all') {
+                currentArticles = [...articles];
+            } else {
+                currentArticles = articles.filter(a => a.category === category);
+            }
+            renderArticles(currentArticles);
+            showHome();
+        }
+
+        // Search
+        function searchArticles() {
+            const keyword = document.getElementById('search-input').value.trim();
+            if (!keyword) return;
+            
+            currentArticles = articles.filter(a => 
+                a.title.includes(keyword) || 
+                a.excerpt.includes(keyword) ||
+                a.content.includes(keyword)
+            );
+            renderArticles(currentArticles);
+            showHome();
+        }
+
+        // Enter key search
+        document.getElementById('search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchArticles();
+            }
+        });
     </script>
 </body>
 </html>
