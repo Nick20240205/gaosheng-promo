@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -41,12 +41,63 @@
         }
         :root {
             --primary: #2d7d46;
+            --primary-dark: #1a5c2e;
             --secondary: #f5a623;
+            --accent: #e74c3c;
             --dark: #333;
             --light: #f8f9fa;
             --gray: #666;
             --border: #e1e1e1;
         }
+        
+        /* 顶部最新文章标识 */
+        .header-top { background: linear-gradient(90deg, #e74c3c, #f39c12); padding: 8px 20px; text-align: center; font-size: 0.9em; }
+        .header-top a { color: white; font-weight: bold; }
+        
+        /* 固定推广位 */
+        .promo-bar { background: rgba(255,255,255,0.15); padding: 12px 25px; border-radius: 10px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .promo-bar .label { font-size: 0.95em; }
+        .promo-bar .code { font-size: 1.8em; font-weight: bold; color: var(--secondary); letter-spacing: 3px; }
+        .promo-bar .download-btn { background: var(--secondary); color: var(--dark); padding: 8px 20px; border-radius: 25px; font-weight: bold; }
+        
+        /* Hero Section */
+        .hero-section { max-width: 1200px; margin: 25px auto; padding: 0 20px; }
+        .hero-banner { background: linear-gradient(135deg, var(--primary), #3498db); border-radius: 15px; padding: 40px; color: white; display: grid; grid-template-columns: 1fr auto; gap: 30px; align-items: center; }
+        .hero-code { background: rgba(255,255,255,0.2); padding: 20px 40px; border-radius: 15px; text-align: center; }
+        .hero-code .code { font-size: 3em; font-weight: bold; color: var(--secondary); letter-spacing: 5px; }
+        
+        /* 分类标签 */
+        .category-tabs { display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+        .category-tab { padding: 10px 25px; background: white; border: 2px solid var(--border); border-radius: 25px; cursor: pointer; }
+        .category-tab.active { background: var(--primary); border-color: var(--primary); color: white; }
+        
+        /* 大图卡片 */
+        .article-card { grid-template-columns: 280px 1fr; }
+        .article-thumb { width: 100%; height: 200px; background: linear-gradient(135deg, #667eea, #764ba2); display: flex; align-items: center; justify-content: center; font-size: 3em; color: white; }
+        
+        /* 标签云 */
+        .tags-cloud { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag-item { padding: 8px 15px; background: var(--light); border-radius: 20px; cursor: pointer; }
+        .tag-item.hot { background: linear-gradient(135deg, #e74c3c, #f39c12); color: white; }
+        
+        /* 热榜 */
+        .hot-num { width: 28px; height: 28px; background: var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .hot-num.top3 { background: linear-gradient(135deg, #e74c3c, #f39c12); }
+        
+        /* 网站地图 */
+        .site-map { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
+        .sitemap-col h3 { color: white; margin-bottom: 15px; }
+        
+        /* 高亮框 */
+        .highlight-box { background: linear-gradient(135deg, #fff3e0, #ffe0b2); border-left: 4px solid var(--secondary); padding: 20px; margin: 20px 0; }
+        .highlight-box.green { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border-left-color: var(--primary); }
+        
+        /* FAQ */
+        .faq-section { margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border); }
+        .faq-item { background: var(--light); padding: 15px 20px; border-radius: 8px; margin-bottom: 15px; }
+        
+        @media (max-width: 768px) { .hero-banner { grid-template-columns: 1fr; text-align: center; } .article-card { grid-template-columns: 1fr; } .container { grid-template-columns: 1fr; } }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: #f0f2f5;
@@ -465,30 +516,64 @@
     </style>
 </head>
 <body>
+    <!-- 顶部最新文章标识 -->
+    <div class="header-top">🔥 <a href="#" onclick="showArticle(1); return false;">最新：高省APP注册流程详解！输入邀请码208888享专属福利</a></div>
+    
     <!-- Header -->
     <header>
         <div class="header-main">
             <a href="#" class="logo" onclick="showHome()">💰省钱小助手</a>
-            <div class="invite-box">
-                <div class="label">高省APP邀请码</div>
-                <div class="code">208888</div>
+            <!-- 固定推广位 -->
+            <div class="promo-bar">
+                <span class="label">高省邀请码：</span>
+                <span class="code">208888</span>
+                <a href="#" class="download-btn">📱 手机应用商店搜索「高省」下载</a>
             </div>
         </div>
         <nav>
             <div class="nav-inner">
-                <a href="#" class="active" onclick="showHome()">首页</a>
-                <a href="#" onclick="filterCategory('省钱技巧')">省钱技巧</a>
-                <a href="#" onclick="filterCategory('优惠券')">优惠券攻略</a>
-                <a href="#" onclick="filterCategory('返利')">返利教程</a>
-                <a href="#" onclick="filterCategory('经验分享')">经验分享</a>
+                <a href="#" class="active" onclick="showHome()">🏠 首页</a>
+                <a href="#" onclick="filterCategory('高省')">🌟 高省</a>
+                <a href="#" onclick="filterCategory('省钱技巧')">💡 省钱技巧</a>
+                <a href="#" onclick="filterCategory('优惠券')">🎫 优惠券</a>
+                <a href="#" onclick="filterCategory('返利')">💵 返利</a>
+                <a href="#" onclick="filterCategory('经验分享')">📖 经验分享</a>
             </div>
         </nav>
     </header>
+
+    <!-- Hero 推广区域 -->
+    <div class="hero-section">
+        <div class="hero-banner">
+            <div class="hero-content">
+                <h1>🧧 高省APP - 购物返利省钱神器</h1>
+                <p>自购省钱，分享赚钱！输入邀请码 <strong style="color: var(--secondary);">208888</strong> 注册，享受新人专属返利！</p>
+                <p>支持淘宝、京东、拼多多、抖音等平台，隐藏优惠券+返利双重优惠</p>
+            </div>
+            <div class="hero-code">
+                <div class="label">官方邀请码</div>
+                <div class="code">208888</div>
+                <div class="tip">注册时填写享专属福利</div>
+            </div>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <div class="container">
         <!-- Articles List -->
         <main class="articles" id="articles-list">
+            <!-- 分类标签 -->
+            <div class="section-title">
+                <h2>📚 文章列表</h2>
+                <a href="#" onclick="showHome(); return false;">查看全部 ></a>
+            </div>
+            <div class="category-tabs">
+                <div class="category-tab active" onclick="filterCategory('all')">全部文章</div>
+                <div class="category-tab" onclick="filterCategory('高省')">🌟 高省</div>
+                <div class="category-tab" onclick="filterCategory('省钱技巧')">💡 省钱技巧</div>
+                <div class="category-tab" onclick="filterCategory('优惠券')">🎫 优惠券</div>
+                <div class="category-tab" onclick="filterCategory('返利')">💵 返利</div>
+            </div>
             <div class="loading">加载中...</div>
         </main>
 
@@ -502,31 +587,38 @@
         <aside class="sidebar" id="sidebar">
             <!-- Search -->
             <div class="widget">
-                <h3 class="widget-title">搜索</h3>
+                <h3 class="widget-title">🔍 搜索文章</h3>
                 <div class="search-box">
-                    <input type="text" id="search-input" placeholder="搜索文章...">
+                    <input type="text" id="search-input" placeholder="输入关键词...">
                     <button onclick="searchArticles()">搜索</button>
                 </div>
             </div>
 
-            <!-- Categories -->
+            <!-- Featured Articles -->
             <div class="widget">
-                <h3 class="widget-title">文章分类</h3>
-                <div class="categories-list" id="categories-list">
-                    <a href="#" onclick="filterCategory('all')">全部<span class="count">(0)</span></a>
+                <h3 class="widget-title">⭐ 推荐文章</h3>
+                <div class="featured-list" id="featured-list"></div>
+            </div>
+
+            <!-- Tags Cloud -->
+            <div class="widget">
+                <h3 class="widget-title">🏷️ 精选标签</h3>
+                <div class="tags-cloud">
+                    <span class="tag-item hot" onclick="filterByTag('高省')">高省</span>
+                    <span class="tag-item" onclick="filterByTag('省钱技巧')">省钱技巧</span>
+                    <span class="tag-item hot" onclick="filterByTag('优惠券')">优惠券</span>
+                    <span class="tag-item" onclick="filterByTag('返利')">返利</span>
+                    <span class="tag-item" onclick="filterByTag('淘宝')">淘宝</span>
+                    <span class="tag-item" onclick="filterByTag('京东')">京东</span>
+                    <span class="tag-item" onclick="filterByTag('拼多多')">拼多多</span>
+                    <span class="tag-item" onclick="filterByTag('学生')">学生</span>
                 </div>
             </div>
 
-            <!-- Popular -->
+            <!-- Hot List -->
             <div class="widget">
-                <h3 class="widget-title">热门文章</h3>
-                <div class="popular-list" id="popular-list"></div>
-            </div>
-
-            <!-- WeChat -->
-            <div class="widget">
-                <h3 class="widget-title">关注我们</h3>
-                <p style="text-align: center; color: #666;">搜索关注公众号获取更多优惠</p>
+                <h3 class="widget-title">🔥 文章热榜</h3>
+                <div class="hot-list" id="hot-list"></div>
             </div>
         </aside>
     </div>
@@ -534,14 +626,50 @@
     <!-- Footer -->
     <footer>
         <div class="footer-inner">
-            <div class="footer-links">
-                <a href="#">关于我们</a>
-                <a href="#">联系方式</a>
-                <a href="#">隐私政策</a>
-                <a href="#">网站地图</a>
+            <!-- 网站地图 -->
+            <div class="site-map">
+                <div class="sitemap-col">
+                    <h3>📱 关于高省</h3>
+                    <a href="#" onclick="filterCategory('高省')">高省APP介绍</a>
+                    <a href="#" onclick="showArticle(1)">邀请码208888</a>
+                    <a href="#" onclick="filterByTag('下载')">APP下载</a>
+                    <a href="#" onclick="filterByTag('注册')">注册教程</a>
+                </div>
+                <div class="sitemap-col">
+                    <h3>💡 省钱攻略</h3>
+                    <a href="#" onclick="filterCategory('省钱技巧')">省钱技巧</a>
+                    <a href="#" onclick="filterCategory('优惠券')">优惠券攻略</a>
+                    <a href="#" onclick="filterCategory('返利')">返利攻略</a>
+                    <a href="#" onclick="filterByTag('学生')">学生省钱</a>
+                </div>
+                <div class="sitemap-col">
+                    <h3>🛒 电商平台</h3>
+                    <a href="#" onclick="filterByTag('淘宝')">淘宝优惠</a>
+                    <a href="#" onclick="filterByTag('京东')">京东优惠</a>
+                    <a href="#" onclick="filterByTag('拼多多')">拼多多优惠</a>
+                    <a href="#" onclick="filterByTag('抖音')">抖音优惠</a>
+                </div>
+                <div class="sitemap-col">
+                    <h3>📖 快速入口</h3>
+                    <a href="#" onclick="showHome()">首页</a>
+                    <a href="#" onclick="filterCategory('all')">全部文章</a>
+                    <a href="#" onclick="renderHotList()">热门文章</a>
+                    <a href="#" onclick="document.getElementById('search-input').focus()">搜索</a>
+                </div>
             </div>
-            <p>© 2026 省钱小助手 | 高省邀请码: 208888</p>
-            <p>本站内容仅供学习交流，购物请到正规平台</p>
+            
+            <div class="footer-bottom">
+                <div class="footer-promo">
+                    <p>💰 高省APP官方邀请码</p>
+                    <p class="code">208888</p>
+                    <p>注册时填写，享专属返利福利</p>
+                </div>
+                <p>© 2026 高省省钱攻略 | 让购物更省钱</p>
+                <p style="margin-top: 10px; font-size: 0.85em;">
+                    <a href="https://nick20240205.github.io/gaosheng-promo/" target="_blank">网站首页</a> | 
+                    <a href="#" onclick="showHome()">文章列表</a> | 网站备案中
+                </p>
+            </div>
         </div>
     </footer>
 
@@ -550,22 +678,103 @@
         const articles = [
             {
                 id: 1,
-                title: "网购省钱必备技巧：普通人也能月省500+",
+                title: "高省APP官方邀请码208888 | 注册下载使用全攻略",
+                category: "高省",
+                date: "2026-03-19",
+                views: 3280,
+                tags: ["高省", "邀请码", "注册", "下载"],
+                icon: "🎯",
+                excerpt: "高省APP官方邀请码208888，本文详细介绍高省APP下载注册方法、邀请码填写位置以及使用技巧，让你快速上手省钱！",
+                content: `
+                    <p>高省APP是一款专注于购物返利的应用，通过它可以领取淘宝、京东、拼多多等平台的隐藏优惠券，还能获得购物返利。本文详细介绍如何使用高省APP省钱。</p>
+                    
+                    <div class="highlight-box"><strong>💰 重要提示：</strong>注册时填写邀请码 <strong>208888</strong>，可享受新人专属福利和更高返利比例！</div>
+                    
+                    <h2>一、什么是高省APP？</h2>
+                    <p>高省APP是一款集优惠券领取、购物返利于一体的省钱工具。用户可以通过高省APP：</p>
+                    <ul><li>领取淘宝、京东、拼多多隐藏优惠券</li><li>获得购物返利</li><li>分享商品给好友获得佣金</li></ul>
+                    
+                    <h2>二、高省APP官方邀请码</h2>
+                    <div class="highlight-box green"><p style="text-align:center;font-size:1.2em;">高省APP官方邀请码</p><p style="text-align:center;font-size:2.5em;font-weight:bold;color:var(--primary);">208888</p></div>
+                    
+                    <h2>三、如何填写邀请码？</h2>
+                    <ol><li>下载高省APP（手机应用商店搜索"高省"）</li><li>打开APP，进入注册页面</li><li>找到"邀请码"输入框</li><li>输入 <strong>208888</strong></li><li>完成注册，享受新人福利</li></ol>
+                    
+                    <h2>四、高省APP使用技巧</h2>
+                    <h3>1. 找优惠券</h3><p>在高省APP搜索框输入想要购买的商品名称，即可找到对应的隐藏优惠券。</p>
+                    <h3>2. 获得返利</h3><p>通过高省APP跳转电商平台下单，确认收货后即可获得返利。</p>
+                    <h3>3. 分享赚钱</h3><p>将商品链接分享给好友，好友通过你的链接购买后，你可以获得佣金。</p>
+                    
+                    <h2>五、常见问题FAQ</h2>
+                    <div class="faq-section">
+                    <div class="faq-item"><strong>Q: 邀请码208888有什么作用？</strong><p>A: 填写邀请码208888后，你可以享受更高的返利比例，还能获得新人专属福利。</p></div>
+                    <div class="faq-item"><strong>Q: 高省APP安全吗？</strong><p>A: 高省APP是正规返利平台，最终交易在淘宝、京东等官方平台完成，资金安全有保障。</p></div>
+                    <div class="faq-item"><strong>Q: 返利什么时候到账？</strong><p>A: 确认收货后，返利会在24小时内到账到你的高省账户。</p></div>
+                    </div>
+                    
+                    <div class="highlight-box green" style="text-align:center;padding:30px;"><h3>💰 立即开始省钱</h3><p>手机应用商店搜索「高省」下载</p><p>输入邀请码 <strong style="font-size:1.5em;">208888</strong></p><p>开启省钱之旅！</p></div>
+                `
+            },
+            {
+                id: 2,
+                title: "网购省钱必看！普通人如何做到月省500+",
                 category: "省钱技巧",
                 date: "2026-03-18",
-                views: 328,
-                excerpt: "在日常网购过程中，养成一些好习惯可以节省不少开支。本文分享我这几年来总结的网购省钱技巧，从比价到优惠券再到返利全覆盖。",
+                views: 2156,
+                tags: ["省钱", "技巧", "网购"],
+                icon: "💎",
+                excerpt: "在日常网购过程中，养成一些好习惯可以节省不少开支。本文分享网购省钱技巧，从比价到优惠券再到返利全覆盖。",
                 content: `
-                    <p>在日常网购过程中，我发现一些实用的小技巧可以帮助节省开支。今天就整理分享给大家，希望能有所帮助。</p>
-                    
-                    <h2>一、养成比价习惯</h2>
-                    <p>在购买商品前，建议先在多个平台对比价格。同样的商品，不同平台的价格可能相差不少。特别是大件商品，比价能省下的钱还是很可观的。</p>
-                    
-                    <h2>二、善用优惠券</h2>
-                    <p>很多电商平台会发放优惠券，但部分优惠券不会直接展示在商品页面上。通过一些工具可以找到这些隐藏的优惠券，有时候能省下不少。</p>
-                    
-                    <h2>三、了解返利渠道</h2>
-                    <p>除了优惠券，还有一些返利渠道可以获得额外优惠。下单后还能拿到一定比例的返现，积少成多也是一笔不小的数目。</p>
+                    <p>在日常网购过程中，我发现一些实用的小技巧可以帮助节省开支。今天就整理分享给大家。</p>
+                    <div class="highlight-box"><strong>💡 配合高省APP：</strong>使用高省APP（邀请码 <strong>208888</strong>）可以一键领取隐藏优惠券，每月轻松省下500+！</div>
+                    <h2>一、养成比价习惯</h2><p>在购买商品前，建议先在多个平台对比价格。</p>
+                    <h2>二、善用优惠券</h2><p>很多电商平台会发放隐藏优惠券，通过高省APP可以找到。</p>
+                    <h2>三、了解返利渠道</h2><p>高省APP支持淘宝、京东、拼多多等平台，下单后还能拿到返现。</p>
+                    <h2>四、关注促销活动</h2><p>电商平台的促销活动期间购买更划算，比如618、双11等。</p>
+                    <div class="faq-section"><h2>常见问题FAQ</h2>
+                    <div class="faq-item"><strong>Q: 高省APP真的能省钱吗？</strong><p>A: 是的，高省APP可以领取隐藏优惠券，还能获得返利。注册时填写邀请码208888享新人福利！</p></div>
+                    <div class="faq-item"><strong>Q: 返利一般有多少？</strong><p>A: 不同商品返利比例不同，一般在1%-50%不等。使用邀请码208888注册可获得额外加成。</p></div>
+                    </div>
+                `
+            },
+            {
+                id: 3,
+                title: "如何找到淘宝京东隐藏优惠券？实测分享",
+                category: "优惠券",
+                date: "2026-03-17",
+                views: 1890,
+                tags: ["淘宝", "京东", "优惠券"],
+                icon: "🎫",
+                excerpt: "很多商品其实有隐藏的优惠券，只是不会直接显示在商品页面上。今天手把手教你如何找到这些优惠券。",
+                content: `
+                    <p>很多商品其实有隐藏的优惠券，只是不会直接显示在商品页面上。</p>
+                    <div class="highlight-box"><strong>💰 更快找到隐藏优惠券：</strong>使用高省APP（邀请码 <strong>208888</strong>），一键搜索全网隐藏优惠券！</div>
+                    <h2>什么是隐藏优惠券？</h2><p>商家为了推广商品，会设置一些不公开显示的优惠券。这些优惠券通过特定渠道才能领取。</p>
+                    <h2>如何找到这些优惠券？</h2><ol><li>使用高省APP搜索商品</li><li>查看优惠券金额</li><li>点击领取并使用</li></ol>
+                    <div class="faq-section"><h2>常见问题FAQ</h2>
+                    <div class="faq-item"><strong>Q: 优惠券有效期多久？</strong><p>A: 不同优惠券有效期不同，一般为7-30天。建议领取后尽快使用。</p></div>
+                    <div class="faq-item"><strong>Q: 一个订单能用多张优惠券吗？</strong><p>A: 一般情况下，一个订单只能使用一张优惠券，建议选择金额最大的那张。</p></div>
+                    </div>
+                `
+            },
+            {
+                id: 4,
+                title: "学生党必看！校园网购省钱指南",
+                category: "经验分享",
+                date: "2026-03-16",
+                views: 1654,
+                tags: ["学生", "省钱", "校园"],
+                icon: "🎓",
+                excerpt: "作为学生党，每个月的生活费都精打细算。这份校园网购省钱指南，帮你用最少的钱买到最合适的东西。",
+                content: `
+                    <p>作为学生党，每个月的生活费都精打细算。这份校园网购省钱指南，帮你用最少的钱买到最合适的东西。</p>
+                    <div class="highlight-box"><strong>🎓 学生专属：</strong>高省APP邀请码<strong>208888</strong>，认证学生身份享专属返利！</div>
+                    <h2>学生党省钱重点</h2><ul><li><strong>日用品</strong>：洗衣液、纸巾、牙膏等批量购买</li><li><strong>电子产品</strong>：等到促销再买，能省几百块</li><li><strong>文具</strong>：开学季优惠多</li><li><strong>零食</strong>：旗舰店经常有优惠</li></ul>
+                    <h2>省钱技巧</h2><ol><li>善用校园代理优惠</li><li>加入学生福利群</li><li>使用返利APP</li><li>关注品牌特卖</li></ol>
+                    <div class="highlight-box green"><strong>💡 推荐：</strong>高省APP（邀请码208888）是学生党省钱利器，淘宝京东拼多多都能用！</div>
+                `
+            }
+        ];
                     
                     <h2>四、关注促销活动</h2>
                     <p>电商平台的促销活动期间购买更划算，比如618、双11等。提前加购物车，等活动时下单，能省不少。</p>
@@ -801,8 +1010,8 @@
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             renderArticles(articles);
-            renderCategories();
-            renderPopular();
+            renderFeaturedList();
+            renderHotList();
         });
 
         // Render Articles
@@ -855,6 +1064,54 @@
                     </div>
                 </div>
             `).join('');
+        }
+
+        // Render Featured List (高省相关文章优先)
+        function renderFeaturedList() {
+            // 高省相关文章优先
+            const gaosheng = articles.filter(a => a.category === '高省' || (a.tags && a.tags.includes('高省')));
+            const others = articles.filter(a => a.category !== '高省' && (!a.tags || !a.tags.includes('高省')));
+            const featured = [...gaosheng, ...others].slice(0, 5);
+            const container = document.getElementById('featured-list');
+            if (container) {
+                container.innerHTML = featured.map(article => `
+                    <div class="featured-item" onclick="showArticle(${article.id})">
+                        <div class="featured-icon">${article.icon || '📄'}</div>
+                        <div class="featured-info">
+                            <h4>${article.title}</h4>
+                            <span class="meta">${article.date} · ${article.views}阅读</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Render Hot List (按点击量排序)
+        function renderHotList() {
+            const sorted = [...articles].sort((a, b) => b.views - a.views).slice(0, 8);
+            const container = document.getElementById('hot-list');
+            if (container) {
+                container.innerHTML = sorted.map((article, index) => `
+                    <div class="hot-item" onclick="showArticle(${article.id})">
+                        <div class="hot-num ${index < 3 ? 'top3' : ''}">${index + 1}</div>
+                        <div class="hot-info">
+                            <h4>${article.title}</h4>
+                            <span>${article.views} 阅读</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Filter by Tag
+        function filterByTag(tag) {
+            currentArticles = articles.filter(a => 
+                (a.tags && a.tags.includes(tag)) ||
+                a.title.includes(tag) ||
+                a.excerpt.includes(tag)
+            );
+            renderArticles(currentArticles);
+            showHome();
         }
 
         // Show Article Detail
@@ -933,3 +1190,4 @@
     </script>
 </body>
 </html>
+
