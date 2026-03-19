@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /
+
+Sitemap: https://nick20240205.github.io/gaosheng-promo/sitemap.xml
